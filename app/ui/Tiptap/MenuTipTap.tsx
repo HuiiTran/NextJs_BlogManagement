@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Editor, useEditorState } from "@tiptap/react";
-import { Button, ButtonGroup } from "flowbite-react";
+import { Button } from "flowbite-react";
 import { Toggle } from "@/components/ui/toggle";
 import {
   Bold,

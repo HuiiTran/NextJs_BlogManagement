@@ -215,18 +215,24 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
         </Toggle>
       </div>
       <div className="flex flex-row items-center justify-center">
-        <Toggle
+        <Button
+          color="light"
+          outline
+          size="xs"
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editorState?.canUndo}
         >
           <Undo />
-        </Toggle>
-        <Toggle
+        </Button>
+        <Button
+          color="light"
+          outline
+          size="xs"
           onClick={() => editor.chain().focus().redo().run()}
           disabled={!editorState?.canRedo}
         >
           <Redo />
-        </Toggle>
+        </Button>
       </div>
     </>
   );

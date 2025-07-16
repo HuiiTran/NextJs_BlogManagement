@@ -20,10 +20,11 @@ const CreatePostPage = () => {
             placeholder="Blog's title"
           />
           <Select id="countries" className="w-[160px]" required>
-            <option>United States</option>
-            <option>Canada</option>
-            <option>France</option>
-            <option>Germany</option>
+            <option selected>Category</option>
+            <option value="health">Health</option>
+            <option value="cuisine">Cuisine</option>
+            <option value="code">Code</option>
+            <option value="cloth">Cloth</option>
           </Select>
         </div>
         <Tiptap content={""} />

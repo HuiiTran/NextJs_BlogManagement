@@ -26,7 +26,7 @@ const CreatePostPage = () => {
             <option>Germany</option>
           </Select>
         </div>
-        <Tiptap content="" />
+        <Tiptap content={""} />
       </div>
     );
   } else

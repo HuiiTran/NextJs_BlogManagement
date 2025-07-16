@@ -91,33 +91,33 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
   });
   if (!editor) return null;
   return (
-    <div className="control-group">
-      <div className="button-group">
+    <>
+      <div className="flex flex-row items-center justify-center">
         <Toggle
           onClick={() => editor.chain().focus().toggleBold().run()}
           disabled={!editorState?.canBold}
-          className={editorState?.isBold ? "is-active" : ""}
+          pressed={editorState?.isBold}
         >
           <Bold />
         </Toggle>
         <Toggle
           onClick={() => editor.chain().focus().toggleItalic().run()}
           disabled={!editorState?.canItalic}
-          className={editorState?.isItalic ? "is-active" : ""}
+          pressed={editorState?.isItalic}
         >
           <Italic />
         </Toggle>
         <Toggle
           onClick={() => editor.chain().focus().toggleStrike().run()}
           disabled={!editorState?.canStrike}
-          className={editorState?.isStrike ? "is-active" : ""}
+          pressed={editorState?.isStrike}
         >
           <Strikethrough />
         </Toggle>
         <Toggle
           onClick={() => editor.chain().focus().toggleCode().run()}
           disabled={!editorState?.canCode}
-          className={editorState?.isCode ? "is-active" : ""}
+          pressed={editorState?.isCode}
         >
           <Code />
         </Toggle>
@@ -129,7 +129,7 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
         </Toggle> */}
         <Toggle
           onClick={() => editor.chain().focus().setParagraph().run()}
-          className={editorState?.isParagraph ? "is-active" : ""}
+          pressed={editorState?.isParagraph}
         >
           <Pilcrow />
         </Toggle>
@@ -137,7 +137,7 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 1 }).run()
           }
-          className={editorState?.isHeading1 ? "is-active" : ""}
+          pressed={editorState?.isHeading1}
         >
           <Heading1 />
         </Toggle>
@@ -145,7 +145,7 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 2 }).run()
           }
-          className={editorState?.isHeading2 ? "is-active" : ""}
+          pressed={editorState?.isHeading2}
         >
           <Heading2 />
         </Toggle>
@@ -153,7 +153,7 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 3 }).run()
           }
-          className={editorState?.isHeading3 ? "is-active" : ""}
+          pressed={editorState?.isHeading3}
         >
           <Heading3 />
         </Toggle>
@@ -161,7 +161,7 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 4 }).run()
           }
-          className={editorState?.isHeading4 ? "is-active" : ""}
+          pressed={editorState?.isHeading4}
         >
           <Heading4 />
         </Toggle>
@@ -169,7 +169,7 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 5 }).run()
           }
-          className={editorState?.isHeading5 ? "is-active" : ""}
+          pressed={editorState?.isHeading5}
         >
           <Heading5 />
         </Toggle>
@@ -177,31 +177,31 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
           onClick={() =>
             editor.chain().focus().toggleHeading({ level: 6 }).run()
           }
-          className={editorState?.isHeading6 ? "is-active" : ""}
+          pressed={editorState?.isHeading6}
         >
           <Heading6 />
         </Toggle>
         <Toggle
           onClick={() => editor.chain().focus().toggleBulletList().run()}
-          className={editorState?.isBulletList ? "is-active" : ""}
+          pressed={editorState?.isBulletList}
         >
           <List />
         </Toggle>
         <Toggle
           onClick={() => editor.chain().focus().toggleOrderedList().run()}
-          className={editorState?.isOrderedList ? "is-active" : ""}
+          pressed={editorState?.isOrderedList}
         >
           <ListOrdered />
         </Toggle>
         <Toggle
           onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-          className={editorState?.isCodeBlock ? "is-active" : ""}
+          pressed={editorState?.isCodeBlock}
         >
           <MessageSquareQuote />
         </Toggle>
         <Toggle
           onClick={() => editor.chain().focus().toggleBlockquote().run()}
-          className={editorState?.isBlockquote ? "is-active" : ""}
+          pressed={editorState?.isBlockquote}
         >
           <Quote />
         </Toggle>
@@ -213,6 +213,8 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
         <Toggle onClick={() => editor.chain().focus().setHardBreak().run()}>
           <WrapText />
         </Toggle>
+      </div>
+      <div className="flex flex-row items-center justify-center">
         <Toggle
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editorState?.canUndo}
@@ -226,7 +228,7 @@ function MenuTiptap({ editor }: { editor: Editor | null }) {
           <Redo />
         </Toggle>
       </div>
-    </div>
+    </>
   );
 }
 

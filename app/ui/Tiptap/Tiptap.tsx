@@ -14,7 +14,8 @@ const Tiptap = ({ content }: { content: string }) => {
     immediatelyRender: false,
     editorProps: {
       attributes: {
-        class: "min-h-[500px] bg-gray-100 border-1 focus:outline-none",
+        class:
+          "p-2 min-h-[500px] rounded-l bg-gray-100 border-1 focus:outline-none",
       },
     },
   });

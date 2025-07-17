@@ -5,6 +5,7 @@ import Tiptap from "./Tiptap/Tiptap";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
+import { postAPIURL } from "../utils/paths";
 
 const formSchema = yup.object({
   title: yup.string().required("Blog's title is required"),
@@ -23,18 +24,18 @@ const CreateBlogForm = ({ user }: { user: string }) => {
     resolver: yupResolver(formSchema),
   });
   const onSubmit = async (data: formValues) => {
-    // const response = await fetch("/api/blogPost/create", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ ...data, user }),
-    // });
-    // if (!response.ok) {
-    //   console.log("Failed to create blog post");
-    //   return;
-    // }
-    // reset();
+    const response = await fetch(postAPIURL + "/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...data, user }),
+    });
+    if (!response.ok) {
+      console.log("Failed to create blog post");
+      return;
+    }
+    reset();
     console.log(data);
   };
   return (

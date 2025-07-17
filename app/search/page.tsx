@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import PostCard from "../ui/PostCard";
 import { Post } from "../post/[slug]/page";
+import { postAPIURL } from "../utils/paths";
 
 type sidebarDataType = {
   searchTerm: string;
@@ -38,7 +39,7 @@ export default function Search() {
     }
     const fetchPosts = async () => {
       setLoading(true);
-      const res = await fetch("http://localhost:3000/api/blogPost/get", {
+      const res = await fetch(postAPIURL + "/get", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -99,7 +100,7 @@ export default function Search() {
     const startIndex = numberOfPosts;
     const urlParams = new URLSearchParams(searchParams);
     urlParams.set("startIndex", startIndex);
-    const res = await fetch("http://localhost:3000/api/blogPost/get", {
+    const res = await fetch(postAPIURL + "/get", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,10 +1,11 @@
 import { Post } from "../post/[slug]/page";
+import { postAPIURL } from "../utils/paths";
 import PostCard from "./PostCard";
 
 export default async function RecentPosts({ limit }: { limit: number }) {
   let posts: Post[] = [];
   try {
-    const result = await fetch("http://localhost:3000/api/blogPost/get", {
+    const result = await fetch(postAPIURL + "/get", {
       method: "POST",
       body: JSON.stringify({ limit: limit, order: "desc" }),
       cache: "no-store",

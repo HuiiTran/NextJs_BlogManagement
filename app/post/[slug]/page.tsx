@@ -1,5 +1,6 @@
 import RecentPosts from "@/app/ui/RecentPosts";
 import RenderContent from "@/app/ui/Tiptap/RenderContent";
+import { postAPIURL } from "@/app/utils/paths";
 import { Button } from "flowbite-react";
 import Link from "next/link";
 import React from "react";
@@ -29,7 +30,7 @@ const PostPage = async ({ params }: BlogPostPageProps) => {
     updatedAt: "",
   };
   try {
-    const result = await fetch("http://localhost:3000/api/blogPost/get", {
+    const result = await fetch(postAPIURL + "/get", {
       method: "POST",
       body: JSON.stringify({ slug: slug }),
       cache: "no-store",

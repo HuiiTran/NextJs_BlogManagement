@@ -10,12 +10,18 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import SearchBar from "./SearchBar";
+import {
+  aboutPage,
+  createPostPage,
+  dashBoardPage,
+  homePage,
+} from "../utils/paths";
 const Header = () => {
   const path = usePathname();
   return (
     <Navbar className="border-b-2 border-gray-200">
       <Link
-        href="/homePage"
+        href={homePage}
         className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold"
       >
         Blog
@@ -38,24 +44,24 @@ const Header = () => {
         <NavbarToggle />
       </div>
       <NavbarCollapse>
-        <Link href="/homePage">
-          <NavbarLink active={path === "/homePage"} as={"div"}>
+        <Link href={homePage}>
+          <NavbarLink active={path === homePage} as={"div"}>
             Home
           </NavbarLink>
         </Link>
-        <Link href="/aboutPage">
-          <NavbarLink active={path === "/aboutPage"} as={"div"}>
+        <Link href={aboutPage}>
+          <NavbarLink active={path === aboutPage} as={"div"}>
             About
           </NavbarLink>
         </Link>
         <SignedIn>
-          <Link href="/dashBoard">
-            <NavbarLink active={path === "/dashBoard"} as={"div"}>
+          <Link href={dashBoardPage}>
+            <NavbarLink active={path === dashBoardPage} as={"div"}>
               Dashboard
             </NavbarLink>
           </Link>
-          <Link href="/dashBoard/createPost">
-            <NavbarLink active={path === "/dashBoard/createPost"} as={"div"}>
+          <Link href={createPostPage}>
+            <NavbarLink active={path === createPostPage} as={"div"}>
               Create Post
             </NavbarLink>
           </Link>

@@ -4,7 +4,7 @@ import { Post } from "../post/[slug]/page";
 export default function PostCard({ post }: { post: Post }) {
   return (
     <>
-      <div className="group relative w-full border border-gray-900 hover:border-2 h-[400px] overflow-hidden rounded-lg sm:w-[430px] transition-all">
+      <div className="group relative w-full border border-gray-900 hover:border-2 h-[400px] overflow-hidden rounded-lg sm:w-[350px] transition-all">
         <Link href={`/post/${post.slug}`}></Link>
         <div className="p-3 flex flex-col gap-2">
           <p className="text-lg font-semibold line-clamp-2">{post.title}</p>

@@ -4,13 +4,12 @@ import {
   NavbarCollapse,
   NavbarLink,
   NavbarToggle,
-  TextInput,
 } from "flowbite-react";
-import { Search } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import SearchBar from "./SearchBar";
 const Header = () => {
   const path = usePathname();
   return (
@@ -21,14 +20,9 @@ const Header = () => {
       >
         Blog
       </Link>
-      <form className="flex items-center gap-3">
-        <TextInput
-          type="text"
-          placeholder="Search..."
-          rightIcon={Search}
-          className="hidden lg:inline w-[500px]"
-        />
-      </form>
+      <div className="flex items-center gap-3">
+        <SearchBar />
+      </div>
       <div className="flex gap-2 md:order-2">
         <SignedIn>
           <UserButton />

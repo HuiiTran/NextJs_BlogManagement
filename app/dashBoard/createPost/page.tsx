@@ -9,9 +9,9 @@ const CreatePostPage = () => {
 
   if (isSignedIn && user.publicMetadata?.isAdmin) {
     return (
-      <>
+      <div className="pt-10">
         <CreateBlogForm user={String(user.publicMetadata.userMongoId)} />
-      </>
+      </div>
     );
   } else
     return (

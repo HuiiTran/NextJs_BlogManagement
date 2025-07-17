@@ -23,19 +23,19 @@ const CreateBlogForm = ({ user }: { user: string }) => {
     resolver: yupResolver(formSchema),
   });
   const onSubmit = async (data: formValues) => {
-    const response = await fetch("/api/blogPost/create", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...data, user }),
-    });
-    if (!response.ok) {
-      console.log("Failed to create blog post");
-      return;
-    }
-    const result = await response.json();
-    reset();
+    // const response = await fetch("/api/blogPost/create", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({ ...data, user }),
+    // });
+    // if (!response.ok) {
+    //   console.log("Failed to create blog post");
+    //   return;
+    // }
+    // reset();
+    console.log(data);
   };
   return (
     <>
@@ -53,8 +53,8 @@ const CreateBlogForm = ({ user }: { user: string }) => {
             {...register("title")}
           />
           {errors.title && <div>{errors.title.message}</div>}
-          <Select className="w-[160px]" {...register("category")}>
-            <option defaultValue="uncategorized">Uncategorized</option>
+          <Select className="w-[160px] lowercase" {...register("category")}>
+            <option value="uncategorized">Uncategorized</option>
             <option value="health">Health</option>
             <option value="cuisine">Cuisine</option>
             <option value="code">Code</option>

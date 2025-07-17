@@ -2,8 +2,9 @@
 import BlogPost from '@/app/lib/models/blogPost';
 import { connect } from '@/app/lib/mongodb/mongoose';
 import { currentUser } from '@clerk/nextjs/server';
+import type { NextRequest } from 'next/server';
 
-export const DELETE = async (req) => {
+export const DELETE = async (req: NextRequest) => {
   const user = await currentUser();
   if (!user) return new Response("Bad request", {status: 400})
   try {

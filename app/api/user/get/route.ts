@@ -3,7 +3,9 @@ import User from '@/app/lib/models/user';
 import { connect } from '@/app/lib/mongodb/mongoose';
 import { currentUser } from '@clerk/nextjs/server';
 
-export const POST = async (req) => {
+import type { NextRequest } from 'next/server';
+
+export const POST = async (req: NextRequest) => {
   const user = await currentUser();
   if(!user) return new Response("Bad request", {status: 401})
   try {

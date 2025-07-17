@@ -1,7 +1,9 @@
 import BlogPost from "@/app/lib/models/blogPost";
 import { connect } from "@/app/lib/mongodb/mongoose";
 import { currentUser } from "@clerk/nextjs/server";
-export const POST = async (req) =>{
+import type { NextRequest } from 'next/server';
+
+export const POST = async (req: NextRequest) =>{
     const user = await currentUser();
   try {
     await connect();

@@ -2,8 +2,10 @@
 import BlogPost from '@/app/lib/models/blogPost';
 import { connect } from '@/app/lib/mongodb/mongoose';
 import { currentUser } from '@clerk/nextjs/server';
+import type { NextRequest } from 'next/server';
 
-export const PUT = async (req) => {
+
+export const PUT = async (req: NextRequest) => {
   const user = await currentUser();
   try {
     await connect();

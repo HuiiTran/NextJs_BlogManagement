@@ -1,9 +1,10 @@
 import BlogPost from "@/app/lib/models/blogPost";
 import { connect } from "@/app/lib/mongodb/mongoose";
+import type { NextRequest } from 'next/server';
 
 const BasedataLimit = 9;
 const BaseStartIndex = 0;
-export const POST = async (req) => {
+export const POST = async (req: NextRequest ) => {
   await connect();
   const data = await req.json();
   try {

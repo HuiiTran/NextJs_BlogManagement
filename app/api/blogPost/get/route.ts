@@ -1,7 +1,7 @@
 import Post from '../../../lib/models/post';
 import { connect } from "@/app/lib/mongodb/mongoose";
 import type { NextRequest } from 'next/server';
-export const getPosts = "http://localhost:3000/api/blogPost/get";
+
 const BasedataLimit = 9;
 const BaseStartIndex = 0;
 export const POST = async (req: NextRequest ) => {

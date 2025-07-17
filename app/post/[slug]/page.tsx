@@ -1,4 +1,3 @@
-import { getPosts } from "@/app/api/blogPost/get/route";
 import RecentPosts from "@/app/ui/RecentPosts";
 import RenderContent from "@/app/ui/Tiptap/RenderContent";
 import { Button } from "flowbite-react";
@@ -18,7 +17,7 @@ interface BlogPostPageProps {
     slug: string;
   };
 }
-
+export const getPosts = "http://localhost:3000/api/blogPost/get";
 const PostPage = async ({ params }: BlogPostPageProps) => {
   const { slug } = params;
   let post: Post = {

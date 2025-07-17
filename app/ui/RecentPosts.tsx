@@ -1,5 +1,4 @@
-import { getPosts } from "../api/blogPost/get/route";
-import { Post } from "../post/[slug]/page";
+import { getPosts, Post } from "../post/[slug]/page";
 import PostCard from "./PostCard";
 
 export default async function RecentPosts({ limit }: { limit: number }) {

@@ -1,6 +1,8 @@
+import { getPosts } from "@/app/api/blogPost/get/route";
+import RecentPosts from "@/app/ui/RecentPosts";
 import RenderContent from "@/app/ui/Tiptap/RenderContent";
 import { Button } from "flowbite-react";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import React from "react";
 export type Post = {
   _id: string;
@@ -16,6 +18,7 @@ interface BlogPostPageProps {
     slug: string;
   };
 }
+
 const PostPage = async ({ params }: BlogPostPageProps) => {
   const { slug } = params;
   let post: Post = {
@@ -28,7 +31,7 @@ const PostPage = async ({ params }: BlogPostPageProps) => {
     createdAt: "",
   };
   try {
-    const result = await fetch("http://localhost:3000/api/blogPost/get", {
+    const result = await fetch(getPosts, {
       method: "POST",
       body: JSON.stringify({ slug: slug }),
       cache: "no-store",
@@ -63,8 +66,14 @@ const PostPage = async ({ params }: BlogPostPageProps) => {
       </Link>
       <div className="flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs">
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
+        <span className="italic">
+          {post && (post?.content?.length / 1000).toFixed(0)} mins read
+        </span>
       </div>
       {post && <RenderContent initialContent={post.content} />}
+      <div>
+        <RecentPosts limit={3} />
+      </div>
     </main>
   );
 };

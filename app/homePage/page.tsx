@@ -1,10 +1,10 @@
 import React from "react";
-import RecentList from "../ui/RecentList";
+import RecentPosts from "../ui/RecentPosts";
 
 const HomePage = () => {
   return (
     <>
-      <RecentList limit={9} />
+      <RecentPosts limit={9} />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import BlogPost from "@/app/lib/models/blogPost";
+import Post from "@/app/lib/models/post";
 import { connect } from "@/app/lib/mongodb/mongoose";
 import type { NextRequest } from 'next/server';
 
@@ -11,7 +11,7 @@ export const POST = async (req: NextRequest ) => {
     const startIndex = parseInt(data.startIndex) || BaseStartIndex;
     const limit = parseInt(data.limit) || BasedataLimit;
     const sortDirection = data.order === 'asc' ? 1 : -1;
-    const posts = await BlogPost.find({
+    const posts = await Post.find({
       ...(data.userId && { userId: data.userId }),
       ...(data.category &&
         data.category !== 'null' &&
@@ -29,7 +29,7 @@ export const POST = async (req: NextRequest ) => {
       .skip(startIndex)
       .limit(limit);
 
-    const totalPosts = await BlogPost.countDocuments();
+    const totalPosts = await Post.countDocuments();
 
     const now = new Date();
 
@@ -39,7 +39,7 @@ export const POST = async (req: NextRequest ) => {
       now.getDate()
     );
 
-    const lastMonthPosts = await BlogPost.countDocuments({
+    const lastMonthPosts = await Post.countDocuments({
       createdAt: { $gte: oneMonthAgo },
     });
 

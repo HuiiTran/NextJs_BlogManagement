@@ -1,5 +1,5 @@
 
-import BlogPost from '@/app/lib/models/blogPost';
+import Post from '@/app/lib/models/post';
 import { connect } from '@/app/lib/mongodb/mongoose';
 import { currentUser } from '@clerk/nextjs/server';
 import type { NextRequest } from 'next/server';
@@ -16,7 +16,7 @@ export const DELETE = async (req: NextRequest) => {
     ) {
       return new Response('Unauthorized', { status: 401 });
     }
-    await BlogPost.findByIdAndDelete(data.postId);
+    await Post.findByIdAndDelete(data.postId);
     return new Response('Post deleted', { status: 200 });
   } catch (error) {
     console.log('Error deleting post:', error);

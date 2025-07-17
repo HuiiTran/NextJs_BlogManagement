@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const blogPostSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true,
@@ -25,5 +25,5 @@ const blogPostSchema = new mongoose.Schema({
 },
     { timestamps: true }
 );
-const BlogPost = mongoose.models.BlogPost || mongoose.model('blogPost', blogPostSchema);
-export default BlogPost;
+const Post = mongoose.models.Post || mongoose.model('Post', PostSchema);
+export default Post;

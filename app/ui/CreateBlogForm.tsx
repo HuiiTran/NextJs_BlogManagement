@@ -7,23 +7,34 @@ import * as yup from "yup";
 import { useForm, Controller } from "react-hook-form";
 
 const formSchema = yup.object({
-  blogTitle: yup.string().required("Blog's title is required"),
-  blogCategory: yup.string().required("Please choose 1 category"),
+  title: yup.string().required("Blog's title is required"),
+  category: yup.string().required("Please choose 1 category"),
   content: yup.string().required("Please enter some contents"),
 });
 export type formValues = yup.InferType<typeof formSchema>;
-const CreateBlogForm = () => {
+const CreateBlogForm = ({ user }: { user: string }) => {
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    getValues,
     control,
   } = useForm<formValues>({
     resolver: yupResolver(formSchema),
   });
   const onSubmit = async (data: formValues) => {
-    console.log(data);
+    const response = await fetch("/api/blogPost/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ...data, user }),
+    });
+    if (!response.ok) {
+      console.log("Failed to create blog post");
+      return;
+    }
+    const result = await response.json();
+    console.log("Blog post created:", result);
   };
   return (
     <>
@@ -38,17 +49,17 @@ const CreateBlogForm = () => {
             sizing="md"
             className="w-full"
             placeholder="Blog's title"
-            {...register("blogTitle")}
+            {...register("title")}
           />
-          {errors.blogTitle && <div>{errors.blogTitle.message}</div>}
-          <Select className="w-[160px]" {...register("blogCategory")}>
+          {errors.title && <div>{errors.title.message}</div>}
+          <Select className="w-[160px]" {...register("category")}>
             <option defaultValue="uncategorized">Uncategorized</option>
             <option value="health">Health</option>
             <option value="cuisine">Cuisine</option>
             <option value="code">Code</option>
             <option value="cloth">Cloth</option>
           </Select>
-          {errors.blogCategory && <div>{errors.blogCategory.message}</div>}
+          {errors.category && <div>{errors.category.message}</div>}
         </div>
         <Controller
           name="content"

@@ -1,5 +1,5 @@
 
-import BlogPost from '@/app/lib/models/blogPost';
+import Post from '@/app/lib/models/post';
 import { connect } from '@/app/lib/mongodb/mongoose';
 import { currentUser } from '@clerk/nextjs/server';
 import type { NextRequest } from 'next/server';
@@ -21,7 +21,7 @@ export const PUT = async (req: NextRequest) => {
       });
     }
 
-    const newPost = await BlogPost.findByIdAndUpdate(
+    const newPost = await Post.findByIdAndUpdate(
       data.postId,
       {
         $set: {

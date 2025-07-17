@@ -13,13 +13,10 @@ export type Post = {
   createdAt: string;
 };
 interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 }
-
 const PostPage = async ({ params }: BlogPostPageProps) => {
-  const { slug } = params;
+  const { slug } = await params;
   let post: Post = {
     _id: "",
     content: "",

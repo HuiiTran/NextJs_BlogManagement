@@ -1,10 +1,10 @@
-import { getPosts, Post } from "../post/[slug]/page";
+import { getPostsURL, Post } from "../post/[slug]/page";
 import PostCard from "./PostCard";
 
 export default async function RecentPosts({ limit }: { limit: number }) {
   let posts: Post[] = [];
   try {
-    const result = await fetch(getPosts, {
+    const result = await fetch(getPostsURL, {
       method: "POST",
       body: JSON.stringify({ limit: limit, order: "desc" }),
       cache: "no-store",

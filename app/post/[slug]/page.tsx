@@ -17,7 +17,7 @@ interface BlogPostPageProps {
     slug: string;
   };
 }
-export const getPosts = "http://localhost:3000/api/blogPost/get";
+export const getPostsURL = "http://localhost:3000/api/blogPost/get";
 const PostPage = async ({ params }: BlogPostPageProps) => {
   const { slug } = params;
   let post: Post = {
@@ -30,7 +30,7 @@ const PostPage = async ({ params }: BlogPostPageProps) => {
     createdAt: "",
   };
   try {
-    const result = await fetch(getPosts, {
+    const result = await fetch(getPostsURL, {
       method: "POST",
       body: JSON.stringify({ slug: slug }),
       cache: "no-store",

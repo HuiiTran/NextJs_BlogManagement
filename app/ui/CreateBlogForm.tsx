@@ -2,13 +2,13 @@
 import { Select, TextInput } from "flowbite-react";
 import React from "react";
 import Tiptap from "./Tiptap/Tiptap";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+// import { yupResolver } from "@hookform/resolvers/yup";
+// import * as yup from "yup";
 
-const formSchema = yup.object({
-  blogTitle: yup.string().required("Blog's title is required"),
-  blogCategory: yup.string().required("Please chose 1 category"),
-});
+// const formSchema = yup.object({
+//   blogTitle: yup.string().required("Blog's title is required"),
+//   blogCategory: yup.string().required("Please chose 1 category"),
+// });
 
 const CreateBlogForm = () => {
   return (
@@ -23,7 +23,7 @@ const CreateBlogForm = () => {
             placeholder="Blog's title"
           />
           <Select className="w-[160px]" required>
-            <option selected>Category</option>
+            <option defaultValue="uncategorized">Uncategorized</option>
             <option value="health">Health</option>
             <option value="cuisine">Cuisine</option>
             <option value="code">Code</option>

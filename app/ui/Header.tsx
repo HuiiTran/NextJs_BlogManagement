@@ -16,7 +16,7 @@ const Header = () => {
   return (
     <Navbar className="border-b-2 border-gray-200">
       <Link
-        href="/"
+        href="/homePage"
         className="self-center whitespace-nowrap text-sm sm:text-xl font-semibold"
       >
         Blog

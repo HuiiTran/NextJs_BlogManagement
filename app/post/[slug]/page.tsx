@@ -11,6 +11,7 @@ export type Post = {
   slug: string;
   userId: string;
   createdAt: string;
+  updatedAt: string;
 };
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -25,6 +26,7 @@ const PostPage = async ({ params }: BlogPostPageProps) => {
     slug: "",
     userId: "",
     createdAt: "",
+    updatedAt: "",
   };
   try {
     const result = await fetch("http://localhost:3000/api/blogPost/get", {

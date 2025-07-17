@@ -48,6 +48,18 @@ const Header = () => {
             About
           </NavbarLink>
         </Link>
+        <SignedIn>
+          <Link href="/dashBoard">
+            <NavbarLink active={path === "/dashBoard"} as={"div"}>
+              Dashboard
+            </NavbarLink>
+          </Link>
+          <Link href="/dashBoard/createPost">
+            <NavbarLink active={path === "/dashBoard/createPost"} as={"div"}>
+              Create Post
+            </NavbarLink>
+          </Link>
+        </SignedIn>
       </NavbarCollapse>
     </Navbar>
   );

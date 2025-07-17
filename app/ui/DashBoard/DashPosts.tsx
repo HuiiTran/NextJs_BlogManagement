@@ -17,6 +17,7 @@ import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { Post } from "@/app/post/[slug]/page";
 import { CircleAlert } from "lucide-react";
+import { postAPIURL, updatePostPage } from "@/app/utils/paths";
 
 export default function DashPosts() {
   const { user } = useUser();
@@ -29,7 +30,7 @@ export default function DashPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch("/api/blogPost/get", {
+        const res = await fetch(postAPIURL + "/get", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -56,7 +57,7 @@ export default function DashPosts() {
   const handleDeletePost = async () => {
     setShowModal(false);
     try {
-      const res = await fetch("/api/post/delete", {
+      const res = await fetch(postAPIURL + "/delete", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -133,7 +134,7 @@ export default function DashPosts() {
                     <TableCell>
                       <Link
                         className="text-teal-500 hover:underline"
-                        href={`/dashboard/update-post/${post._id}`}
+                        href={`${updatePostPage}/${post._id}`}
                       >
                         <span>Edit</span>
                       </Link>

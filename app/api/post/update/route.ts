@@ -13,7 +13,7 @@ export const PUT = async (req: NextRequest) => {
 
     if (
       !user ||
-      user.publicMetadata.userMongoId !== data.userMongoId ||
+      user.publicMetadata.userMongoId !== data.user ||
       user.publicMetadata.isAdmin !== true
     ) {
       return new Response('Unauthorized', {

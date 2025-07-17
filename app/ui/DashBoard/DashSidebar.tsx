@@ -13,6 +13,7 @@ import { SignOutButton } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { ChartPie, FileText, LogIn, UserRoundCog, Users } from "lucide-react";
+import { dashBoardPage } from "@/app/utils/paths";
 export default function DashSidebar() {
   const [tab, setTab] = useState("");
   const searchParams = useSearchParams();
@@ -34,7 +35,7 @@ export default function DashSidebar() {
         <SidebarItems>
           <SidebarItemGroup className="flex flex-col gap-1">
             {user.publicMetadata?.isAdmin && (
-              <Link href="/dashBoard?tab=dash">
+              <Link href={`${dashBoardPage}?tab=dash`}>
                 <SidebarItem
                   active={tab === "dash" || !tab}
                   icon={ChartPie}
@@ -44,7 +45,7 @@ export default function DashSidebar() {
                 </SidebarItem>
               </Link>
             )}
-            <Link href="/dashBoard?tab=profile">
+            <Link href={`${dashBoardPage}?tab=profile`}>
               <SidebarItem
                 active={tab === "profile"}
                 icon={UserRoundCog}
@@ -56,14 +57,14 @@ export default function DashSidebar() {
               </SidebarItem>
             </Link>
             {user?.publicMetadata?.isAdmin && (
-              <Link href="/dashBoard?tab=posts">
+              <Link href={`${dashBoardPage}?tab=posts`}>
                 <SidebarItem active={tab === "posts"} icon={FileText} as="div">
                   Posts
                 </SidebarItem>
               </Link>
             )}
             {user?.publicMetadata?.isAdmin && (
-              <Link href="/dashBoard?tab=users">
+              <Link href={`${dashBoardPage}?tab=users`}>
                 <SidebarItem active={tab === "users"} icon={Users} as="div">
                   Users
                 </SidebarItem>

@@ -18,6 +18,7 @@ const CreateBlogForm = ({ user }: { user: string }) => {
     handleSubmit,
     formState: { errors, isSubmitting },
     control,
+    reset,
   } = useForm<formValues>({
     resolver: yupResolver(formSchema),
   });
@@ -34,7 +35,7 @@ const CreateBlogForm = ({ user }: { user: string }) => {
       return;
     }
     const result = await response.json();
-    console.log("Blog post created:", result);
+    reset();
   };
   return (
     <>

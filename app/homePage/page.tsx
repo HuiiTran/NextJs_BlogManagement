@@ -1,10 +1,11 @@
 import React from "react";
+import RecentList from "../ui/RecentList";
 
 const HomePage = () => {
   return (
-    <div>
-      <h1>Welcome to Huy&apos;s Blog</h1>
-    </div>
+    <>
+      <RecentList limit={9} />
+    </>
   );
 };
 

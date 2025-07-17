@@ -1,5 +1,5 @@
 
-import Post from '@/app/lib/models/post';
+import Post from '../../../lib/models/post';
 import { connect } from '@/app/lib/mongodb/mongoose';
 import { currentUser } from '@clerk/nextjs/server';
 import type { NextRequest } from 'next/server';

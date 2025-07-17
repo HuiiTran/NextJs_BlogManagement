@@ -7,16 +7,26 @@ import { TextStyleKit } from "@tiptap/extension-text-style";
 
 const extensions = [TextStyleKit, StarterKit];
 
-const Tiptap = ({ content }: { content: string }) => {
+const Tiptap = ({
+  initialContent,
+  onChange,
+}: {
+  initialContent: string;
+  onChange: (value: string) => void;
+}) => {
   const editor = useEditor({
     extensions,
-    content: content,
+    content: initialContent,
     immediatelyRender: false,
     editorProps: {
       attributes: {
         class:
           "p-2 min-h-[500px] rounded-l bg-gray-100 border-1 focus:outline-none",
       },
+    },
+    onUpdate: ({ editor }) => {
+      const htmlString = editor.getHTML();
+      onChange(htmlString);
     },
   });
 

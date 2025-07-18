@@ -55,7 +55,7 @@ const Header = () => {
           </NavbarLink>
         </Link>
         <SignedIn>
-          <Link href={dashBoardPage}>
+          <Link href={`${dashBoardPage}?tab=dash`}>
             <NavbarLink active={path === dashBoardPage} as={"div"}>
               Dashboard
             </NavbarLink>

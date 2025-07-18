@@ -23,9 +23,8 @@ const UpdateBlogForm = ({
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors, isDirty },
     control,
-    reset,
   } = useForm<formValues>({
     resolver: yupResolver(formSchema),
     defaultValues: {
@@ -44,11 +43,10 @@ const UpdateBlogForm = ({
       body: JSON.stringify({ ...data, postId, user }),
     });
     if (!response.ok) {
-      console.log("Failed to create blog post");
+      console.log("Failed to update blog post");
       return;
     }
-    reset();
-    console.log(data);
+    window.location.reload();
   };
   return (
     <>
@@ -86,7 +84,7 @@ const UpdateBlogForm = ({
         />
 
         {errors.content && <div>{errors.content.message}</div>}
-        <Button disabled={isSubmitting} type="submit">
+        <Button disabled={!isDirty} color={"dark"} type="submit">
           Submit
         </Button>
       </form>

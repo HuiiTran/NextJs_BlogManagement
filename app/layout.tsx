@@ -5,6 +5,7 @@ import Header from "./ui/Header";
 import ThemeCom from "./ui/ThemeCom";
 import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
+import Footer from "./ui/Footer";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -41,6 +42,7 @@ export default function RootLayout({
               <ThemeCom>
                 <Header />
                 {children}
+                <Footer />
               </ThemeCom>
             </ThemeProvider>
           </body>

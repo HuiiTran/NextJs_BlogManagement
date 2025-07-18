@@ -31,10 +31,12 @@ const Tiptap = ({
   });
 
   return (
-    <>
-      <MenuTiptap editor={editor} />
+    <div className="relative">
+      <div className="sticky top-0 z-40 backdrop-blur bg-white/50">
+        <MenuTiptap editor={editor} />
+      </div>
       <EditorContent editor={editor} />
-    </>
+    </div>
   );
 };
 

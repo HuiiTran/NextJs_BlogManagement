@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import DashProfile from "../ui/DashBoard/UserProfile";
 import DashSidebar from "../ui/DashBoard/DashSidebar";
 import DashPosts from "../ui/DashBoard/DashPosts";
+import DashUsers from "../ui/DashBoard/DashUsers";
+import DashBoardStatistical from "../ui/DashBoard/DashBoardStatistical";
 
 export default function Dashboard() {
   const searchParams = useSearchParams();
@@ -26,9 +28,10 @@ export default function Dashboard() {
       {tab === "profile" && <DashProfile />}
 
       {tab === "posts" && <DashPosts />}
-      {/*
+
       {tab === "users" && <DashUsers />}
-      {tab === "dash" && <DashboardComp />} */}
+
+      {tab === "dash" && <DashBoardStatistical />}
     </div>
   );
 }

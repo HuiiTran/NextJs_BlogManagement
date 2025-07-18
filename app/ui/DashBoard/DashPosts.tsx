@@ -74,6 +74,7 @@ export default function DashPosts() {
         );
         setUserPosts(newPosts);
         setPostIdToDelete(""); // Reset postIdToDelete after deletion
+        window.location.reload();
       } else {
         console.log(data.message);
       }

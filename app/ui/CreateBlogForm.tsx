@@ -36,7 +36,7 @@ const CreateBlogForm = ({ user }: { user: string }) => {
       return;
     }
     reset();
-    console.log(data);
+    window.location.reload();
   };
   return (
     <>

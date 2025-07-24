@@ -3,28 +3,23 @@
 import { Post } from "@/app/post/[slug]/page";
 import UpdateBlogForm from "@/app/ui/UpdateBlogForm";
 import { postAPIURL } from "@/app/utils/paths";
+import { getPostById } from "@/app/utils/postApi";
 import { useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 interface BlogPostPageProps {
   params: Promise<{ id: string }>;
 }
-const CreatePostPage = ({ params }: BlogPostPageProps) => {
+const UpdatePage = ({ params }: BlogPostPageProps) => {
   const { isSignedIn, user, isLoaded } = useUser();
-  const [post, setPosts] = useState<Post>();
+  const [post, setPost] = useState<Post>();
   const [loading, setLoading] = useState<boolean>(false);
   useEffect(() => {
     setLoading(true);
     async function getPost() {
       const { id } = await params;
       try {
-        console.log(id);
-        const result = await fetch(postAPIURL + "/get", {
-          method: "POST",
-          body: JSON.stringify({ postId: id }),
-          cache: "no-store",
-        });
-        const data = await result.json();
-        await setPosts(data.posts[0]);
+        const data = await getPostById(id);
+        setPost(data);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -55,4 +50,4 @@ const CreatePostPage = ({ params }: BlogPostPageProps) => {
     );
 };
 
-export default CreatePostPage;
+export default UpdatePage;

@@ -1,17 +1,13 @@
 import { Post } from "../post/[slug]/page";
-import { postAPIURL } from "../utils/paths";
+import { getAllPosts } from "../utils/postApi";
+// import { postAPIURL } from "../utils/paths";
 import PostCard from "./PostCard";
 
 export default async function RecentPosts({ limit }: { limit: number }) {
   let posts: Post[] = [];
   try {
-    const result = await fetch(postAPIURL + "/get", {
-      method: "POST",
-      body: JSON.stringify({ limit: limit, order: "desc" }),
-      cache: "no-store",
-    });
-    const data = await result.json();
-    posts = data.posts;
+    posts = await getAllPosts(limit);
+    console.log(posts);
   } catch (error) {
     console.log("Error getting post:", error);
   }

@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   images: {
         domains: [
             'img.clerk.com',
+            'localhost'
           ],
     }
 };

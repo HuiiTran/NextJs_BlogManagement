@@ -1,6 +1,7 @@
 import RecentPosts from "@/app/ui/RecentPosts";
 import RenderContent from "@/app/ui/Tiptap/RenderContent";
-import { postAPIURL } from "@/app/utils/paths";
+// import { postAPIURL } from "@/app/utils/paths";
+import { getPostBySlug } from "@/app/utils/postApi";
 import { Button } from "flowbite-react";
 import Link from "next/link";
 import React from "react";
@@ -13,6 +14,7 @@ export type Post = {
   userId: string;
   createdAt: string;
   updatedAt: string;
+  image: string;
 };
 interface BlogPostPageProps {
   params: Promise<{ slug: string }>;
@@ -28,15 +30,10 @@ const PostPage = async ({ params }: BlogPostPageProps) => {
     userId: "",
     createdAt: "",
     updatedAt: "",
+    image: "",
   };
   try {
-    const result = await fetch(postAPIURL + "/get", {
-      method: "POST",
-      body: JSON.stringify({ slug: slug }),
-      cache: "no-store",
-    });
-    const data = await result.json();
-    post = data.posts[0];
+    post = await getPostBySlug(slug);
   } catch (error) {
     post.title = "Failed to load post";
     console.log(error);
@@ -59,7 +56,7 @@ const PostPage = async ({ params }: BlogPostPageProps) => {
         href={`/search?category=${post && post.category}`}
         className="self-center mt-5"
       >
-        <Button color="gray" pill size="xs">
+        <Button color="gray" pill size="xs" className="cursor-pointer">
           {post && post.category}
         </Button>
       </Link>

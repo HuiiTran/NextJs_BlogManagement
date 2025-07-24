@@ -1,11 +1,22 @@
 import Link from "next/link";
 import { Post } from "../post/[slug]/page";
+import Image from "next/image";
 
 export default function PostCard({ post }: { post: Post }) {
   return (
     <>
       <div className="group relative w-full border border-gray-900 hover:border-2 h-[400px] overflow-hidden rounded-lg sm:w-[350px] transition-all">
-        <Link href={`/post/${post.slug}`}></Link>
+        <Link href={`/post/${post.slug}`}>
+          <div className="pt-6 flex items-center justify-center">
+            <Image
+              className="rounded-l"
+              width={250}
+              height={200}
+              src={"http://localhost:5035" + post.image}
+              alt={""}
+            />
+          </div>
+        </Link>
         <div className="p-3 flex flex-col gap-2">
           <p className="text-lg font-semibold line-clamp-2">{post.title}</p>
           <span className="italic text-sm">{post.category}</span>

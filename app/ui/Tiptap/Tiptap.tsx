@@ -32,7 +32,7 @@ const Tiptap = ({
 
   return (
     <div className="relative">
-      <div className="sticky top-0 z-40 backdrop-blur bg-white/50">
+      <div className="sticky top-0 z-40 backdrop-blur bg-white/70">
         <MenuTiptap editor={editor} />
       </div>
       <EditorContent editor={editor} />

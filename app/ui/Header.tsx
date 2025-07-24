@@ -49,11 +49,11 @@ const Header = () => {
             Home
           </NavbarLink>
         </Link>
-        <Link href={aboutPage}>
+        {/* <Link href={aboutPage}>
           <NavbarLink active={path === aboutPage} as={"div"}>
             About
           </NavbarLink>
-        </Link>
+        </Link> */}
         <SignedIn>
           <Link href={`${dashBoardPage}?tab=dash`}>
             <NavbarLink active={path === dashBoardPage} as={"div"}>

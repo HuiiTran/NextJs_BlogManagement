@@ -18,6 +18,7 @@ import Link from "next/link";
 import { Post } from "@/app/post/[slug]/page";
 import { CircleAlert } from "lucide-react";
 import { postAPIURL, updatePostPage } from "@/app/utils/paths";
+import { getAllPosts } from "@/app/utils/postApi";
 
 export default function DashPosts() {
   const { user } = useUser();
@@ -30,21 +31,8 @@ export default function DashPosts() {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(postAPIURL + "/get", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            userId: user?.publicMetadata?.userMongoId,
-          }),
-        });
-        const data = await res.json();
-        console.log(data);
-
-        if (res.ok) {
-          setUserPosts(data.posts);
-        }
+        const data = await getAllPosts(5);
+        setUserPosts(data);
       } catch (error) {
         console.log(error);
       }

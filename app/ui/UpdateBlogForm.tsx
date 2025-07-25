@@ -7,6 +7,7 @@ import { useForm, Controller, useWatch, Control } from "react-hook-form";
 import { postAPIURL } from "../utils/paths";
 import { Post } from "../post/[slug]/page";
 import { UploadIcon } from "lucide-react";
+import { updatePost } from "../utils/postApi";
 
 const formSchema = yup.object({
   title: yup.string().required("Blog's title is required"),
@@ -64,17 +65,7 @@ const UpdateBlogForm = ({
   });
   const postId = post?._id;
   const onSubmit = async (data: formValuesUpdate) => {
-    const response = await fetch(postAPIURL + "/update", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ ...data, postId, user }),
-    });
-    if (!response.ok) {
-      console.log("Failed to update blog post");
-      return;
-    }
+    updatePost(data, postId);
     window.location.reload();
   };
   return (

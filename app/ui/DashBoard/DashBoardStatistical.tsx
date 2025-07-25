@@ -15,6 +15,7 @@ import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { ArrowUp, StickyNote, Users } from "lucide-react";
 import Image from "next/image";
+import { getAllPosts, getAllPostsStatic } from "@/app/utils/postApi";
 
 type User = {
   _id: string;
@@ -68,21 +69,9 @@ export default function DashBoardStatistical() {
     };
     const fetchPosts = async () => {
       try {
-        const res = await fetch("/api/post/get", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            limit: 5,
-          }),
-        });
-        const data = await res.json();
-        if (res.ok) {
-          setPosts(data.posts);
-          setTotalPosts(data.totalPosts);
-          setLastMonthPosts(data.lastMonthPosts);
-        }
+        getAllPostsStatic(5, setTotalPosts, setLastMonthPosts);
+        const tempPosts = await getAllPosts(5);
+        setPosts(tempPosts);
       } catch (error) {
         console.log(error);
       }

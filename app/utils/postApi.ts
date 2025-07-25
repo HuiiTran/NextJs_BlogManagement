@@ -17,6 +17,19 @@ export const getAllPosts = async (limit: number) : Promise<Post[]> =>{
         });
 }
 
+
+export const getAllPostsStatic = async (limit: number, setTotalPosts: (totalPosts: number) => void, setLastMonthPosts: (lastMonthPosts: number) => void) =>{
+    await unAuthAxiosInstance.get("/v1/posts?page=1&limit=10" + limit)
+        .then(response => {
+            setTotalPosts(response.data.pagination.total);
+            setLastMonthPosts(response.data.lastMonthPosts);
+        })
+        .catch(err => {
+            const message = err?.response?.data?.message || "Something went wrong, please try again";
+            console.log(message);
+        });
+}
+
 export const getPostBySlug = async (slug: string) : Promise<Post> =>{
     return await unAuthAxiosInstance.get("/v1/posts/slug/" + slug)
         .then(response => {
@@ -54,6 +67,7 @@ export const createPost = async (data: formValues, reset: UseFormReset<formValue
         .then((response)=>{
             console.log(response)
             reset()
+            window.location.reload();
         })
         .catch((error) => {
             const message =
@@ -63,7 +77,9 @@ export const createPost = async (data: formValues, reset: UseFormReset<formValue
         });
 }
 
-export const updatePost = async (data: formValuesUpdate,postId: string, reset: UseFormReset<formValues>) =>{
+export const updatePost = async (data: formValuesUpdate, postId: string | undefined) =>{
+    if(!postId)
+        return 
     const formData = new FormData();
     formData.append("image", data.image[0]);
     formData.append("title", data.title)
@@ -74,7 +90,6 @@ export const updatePost = async (data: formValuesUpdate,postId: string, reset: U
     await axiosInstance.put("v1/posts/", formData)
         .then((response)=>{
             console.log(response)
-            reset()
         })
         .catch((error) => {
             const message =
@@ -82,4 +97,24 @@ export const updatePost = async (data: formValuesUpdate,postId: string, reset: U
                 "Something went wrong, please try again";
             console.log(message)
         });
+}
+
+export const deletePost = async (postIdToDelete: string, setPostIdToDelete: (postIdToDelete: string) => void, 
+                                    userPosts: Post[], setUserPosts: (userPosts: Post[]) => void ) =>{
+    await axiosInstance.delete("v1/posts/" + postIdToDelete)
+    .then((response) =>{
+        const newPosts = userPosts.filter(
+          (post) => post._id !== postIdToDelete
+        );
+        setUserPosts(newPosts);
+        setPostIdToDelete("")
+        window.location.reload()
+        console.log(response)
+    })
+    .catch((error) =>{
+        const message =
+                error?.response?.data?.message ||
+                "Something went wrong, please try again";
+            console.log(message)
+    })
 }

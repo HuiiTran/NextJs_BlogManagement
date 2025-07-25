@@ -3,6 +3,7 @@ import RenderContent from "@/app/ui/Tiptap/RenderContent";
 // import { postAPIURL } from "@/app/utils/paths";
 import { getPostBySlug } from "@/app/utils/postApi";
 import { Button } from "flowbite-react";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 export type Post = {
@@ -60,6 +61,15 @@ const PostPage = async ({ params }: BlogPostPageProps) => {
           {post && post.category}
         </Button>
       </Link>
+      <div className="pt-6 flex items-center justify-center">
+        <Image
+          className="rounded-l"
+          width={250}
+          height={200}
+          src={"http://localhost:5035" + post.image}
+          alt={""}
+        />
+      </div>
       <div className="flex justify-between p-3 border-b border-slate-500 mx-auto w-full max-w-2xl text-xs">
         <span>{post && new Date(post.createdAt).toLocaleDateString()}</span>
         <span className="italic">

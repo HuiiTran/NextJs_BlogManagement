@@ -56,19 +56,6 @@ const CreateBlogForm = ({ user }: { user: string }) => {
   });
   const onSubmit = async (data: formValues) => {
     await createPost(data, reset);
-    // const response = await fetch(postAPIURL + "/create", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({ ...data, user }),
-    // });
-    // if (!response.ok) {
-    //   console.log("Failed to create blog post");
-    //   return;
-    // }
-    // reset();
-    //window.location.reload();
   };
   return (
     <>
